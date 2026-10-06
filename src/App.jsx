@@ -14,7 +14,7 @@ const App = () => {
 
   const handleSearch = async (searchQuery) => {
     setCurrentQuery(searchQuery);
-    if(!searchQuery.trim()){
+    if (!searchQuery.trim()) {
       alert("Please enter a search term");
       return;
     }
@@ -26,7 +26,7 @@ const App = () => {
     setError(null);
     try {
       setLoading(true);
-      const data = await axios.get(`https://api.pexels.com/v1/search?query=${searchQuery}&page=${pageNum}&per_page=15`, { headers: { "Authorization": apiKey } });
+      const data = await axios.get(`https://api.pexels.com/v1/search?query=${searchQuery}&page=${pageNum}&per_page=20`, { headers: { "Authorization": apiKey } });
       console.log(data);
       const newImages = data.data.photos;
 
@@ -51,13 +51,23 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Search onSearch={handleSearch} />
-      <Gallery images={images} />
-      {error && <p style={{color:"red"}}>{error}</p>}
-      {images.length === 0 && !loading && !error && currentQuery && (<p>No results found for "{currentQuery}". Try Another search !</p>)}
-      {images.length === 0 && loading && <p>Loading....</p>}
-      {images.length > 0 && <button onClick={() => { handleLoadMore() }} disabled={loading}>{loading? "Loading..." : "Load More"}</button>}
+    <div className="min-h-screen  bg-zinc-950 text-zinc-100">
+      <h1 className="text-3xl font-bold text-blue-500 p-4">PixelSearch</h1>
+      <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+        <Search onSearch={handleSearch} />
+        <Gallery images={images} />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {images.length === 0 && !loading && !error && currentQuery && (<p>No results found for "{currentQuery}". Try Another search !</p>)}
+        {images.length === 0 && loading && <p>Loading....</p>}
+        {images.length > 0 && (
+          <button
+            onClick={() => handleLoadMore()}
+            disabled={loading}
+            className="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-2.5 rounded-lg transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed my-8"
+          >
+            {loading ? "Loading..." : "Load More"}
+          </button>
+        )}      </div>
     </div>
   )
 }
