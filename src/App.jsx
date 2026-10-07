@@ -13,6 +13,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (searchQuery) => {
+    setImages([])
     setCurrentQuery(searchQuery);
     if (!searchQuery.trim()) {
       alert("Please enter a search term");
@@ -52,13 +53,16 @@ const App = () => {
 
   return (
     <div className="min-h-screen  bg-zinc-950 text-zinc-100">
-      <h1 className="text-3xl font-bold text-blue-500 p-4">PixelSearch</h1>
+      <h1 className="text-3xl font-bold text-blue-500 p-4">PexelSearch</h1>
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
         <Search onSearch={handleSearch} />
         <Gallery images={images} />
         {error && <p style={{ color: "red" }}>{error}</p>}
         {images.length === 0 && !loading && !error && currentQuery && (<p>No results found for "{currentQuery}". Try Another search !</p>)}
-        {images.length === 0 && loading && <p>Loading....</p>}
+        {images.length === 0 && loading && <div className="py-6 flex items-center gap-2 text-zinc-400">
+          <span className="inline-block w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></span>
+          Loading photos
+        </div>}
         {images.length > 0 && (
           <button
             onClick={() => handleLoadMore()}
@@ -67,7 +71,8 @@ const App = () => {
           >
             {loading ? "Loading..." : "Load More"}
           </button>
-        )}      </div>
+        )}      
+      </div>
     </div>
   )
 }

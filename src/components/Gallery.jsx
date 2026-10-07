@@ -7,7 +7,7 @@ const Gallery = ({ images }) => {
           className="break-inside-avoid rounded-xl overflow-hidden mb-4 bg-zinc-900"
         >
           <img
-            className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+            className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
             src={image.src.large}
             alt={image.alt}
           />
