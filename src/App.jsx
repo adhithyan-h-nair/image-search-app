@@ -2,7 +2,7 @@ import { useState } from "react";
 import Search from "./components/Search";
 import axios from "axios";
 import Gallery from "./components/Gallery";
-const apiKey = import.meta.env.VITE_PEXELS_API_KEY;
+const apiKey = import.meta.env.PEXELS_API_KEY;
 
 
 const App = () => {
