@@ -1,100 +1,111 @@
-# 📸 PexelSearch
+# PexelSearch — Image Search App
 
-A clean, responsive image search application built with **React 19**, **Tailwind CSS v4**, and **Vite**, powered by the **Pexels API**.
-
-Whether you're looking for desktop wallpapers, design inspiration, or free stock photos for your next project, PexelSearch delivers a fast, curated browsing experience with an adaptive masonry gallery and sleek dark aesthetics.
+A clean, responsive image search application built with React and Tailwind CSS, powered by the Pexels API. Search millions of high-resolution royalty-free photos, explore trending themes, and browse through an adaptive masonry gallery.
 
 ---
 
-## ✨ Features
+## How It Works
 
-- **Instant Photo Search** — Look up high-resolution royalty-free photos by any keyword.
-- **Trending Topic Tags** — Jump straight into curated themes like *Nature*, *Architecture*, *Minimalist*, *Travel*, and *Urban*.
-- **Responsive Masonry Gallery** — Dynamically adjusts columns from 1 column on mobile up to 4 columns on desktop displays.
-- **Zero Layout Shifts** — Image placeholders adapt to each photo's dominant background tint while images load.
-- **Photographer Attribution** — Hover cards celebrate the original photographers with direct links to view and download photos on Pexels.
-- **Pagination (Load More)** — Seamlessly load more photos page-by-page.
-- **Mobile Friendly** — Designed from the ground up for touchscreens, tablets, and desktop monitors.
-
----
-
-## 🛠️ Built With
-
-- **[React 19](https://react.dev/)** — Modern React with functional components and hooks
-- **[Vite 8](https://vite.dev/)** — Lightning-fast development server and production builds
-- **[Tailwind CSS v4](https://tailwindcss.com/)** — Clean utility-first styling with dark theme support
-- **[Axios](https://axios-http.com/)** — Promise-based HTTP client for API requests
-- **[Pexels API](https://www.pexels.com/api/)** — Millions of free, high-resolution stock photos
+1. **Query & Discovery**: Enter any keyword in the search bar or pick from curated trending tags (Nature, Architecture, Minimalist, Wallpapers, etc.) to trigger an instant search.
+2. **API Integration**: The app sends authenticated requests to the Pexels API via Axios, using an environment variable (`VITE_PEXELS_API_KEY`) to fetch 20 curated photos per page.
+3. **Responsive Masonry Grid**: Photos render in an adaptive column layout (1 column on mobile up to 4 columns on desktop) with `loading="lazy"` for smooth browsing.
+4. **Zero Layout Shifts**: Each image card dynamically tints its background to the photo's dominant color (`avg_color`) while the image downloads.
+5. **Photographer Credits**: Hovering over any photo reveals the creator's name and an external link to view and download the high-resolution original on Pexels.
+6. **Incremental Pagination**: The "Load More" action fetches subsequent pages and seamlessly appends new photos to the existing state.
 
 ---
 
-## 🚀 Getting Started
+## Features
 
-Follow these steps to run the project locally on your machine.
+- **Keyword Search**: Quick photo lookups with dedicated clear button and input handling.
+- **Trending Tags**: Quick-access pills for popular photography themes.
+- **Responsive Masonry Gallery**: Multi-column CSS layout that automatically scales across screen sizes.
+- **Color-Matched Placeholders**: Smooth loading experience using Pexels average color metadata.
+- **Photographer Attribution**: Direct credits and profile/photo links for all imagery.
+- **Load More Pagination**: Paginated results with interactive loading indicators.
+- **Graceful UI States**: Includes loading skeletons, friendly empty states, and styled error alerts.
+- **Modern Dark Interface**: Built with a sleek zinc palette and responsive mobile-first styling.
+
+---
+
+## Screenshots
+
+> *Add screenshots of the app below or place images in the `screenshots/` directory.*
+
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Search Results & Gallery
+![Search Results](screenshots/gallery.png)
+
+### Photographer Overlay & Card Details
+![Photo Overlay](screenshots/photo-card.png)
+
+---
+
+## Tech Stack
+
+- **Frontend**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vite.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **HTTP Client**: [Axios](https://axios-http.com/)
+- **API**: [Pexels API](https://www.pexels.com/api/)
+
+> **Note on AI Usage**:
+> Artificial Intelligence (AI) was utilized strictly for **UI styling refinements, Tailwind CSS consistency, and documentation**. The core application logic, component architecture, state management, and functional features were independently written and developed.
+
+---
+
+## Getting Started
 
 ### Prerequisites
-
 Make sure you have:
-- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
-- A free API key from [Pexels API](https://www.pexels.com/api/)
+- [Node.js](https://nodejs.org/) (v18 or newer recommended)
+- A free API key from [Pexels](https://www.pexels.com/api/)
 
 ### Installation
 
-1. **Clone the repository**
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/adhithyan-h-nair/image-search-app.git
+   ```
+
+2. **Navigate into the project directory**:
+   ```bash
    cd image-search-app
    ```
 
-2. **Install dependencies**
+3. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. **Set up your environment variables**
+4. **Configure your API key**:
    Create a `.env` file in the root directory:
    ```env
    VITE_PEXELS_API_KEY=your_pexels_api_key_here
    ```
-   *(You can obtain a free API key instantly by creating an account on [pexels.com/api](https://www.pexels.com/api/)).*
 
-4. **Start the local dev server**
+5. **Start the development server**:
    ```bash
    npm run dev
    ```
-   Open `http://localhost:5173` (or the port displayed in your terminal) in your browser.
+   Open `http://localhost:5173` (or the port shown in your terminal).
 
----
+### Production Build
 
-## 📁 Project Structure
+To create an optimized production build:
+```bash
+npm run build
+```
 
-```text
-image-search-app/
-├── public/              # Static public assets
-├── src/
-│   ├── assets/          # Project assets
-│   ├── components/
-│   │   ├── Gallery.jsx  # Masonry photo grid with hover cards & attribution
-│   │   └── Search.jsx   # Search input bar with quick clear & submit button
-│   ├── App.jsx          # Main application logic, state, and responsive shell
-│   ├── index.css        # Tailwind imports and base typography settings
-│   └── main.jsx         # Application entry point
-├── .env                 # Environment variables (API keys)
-├── package.json         # Dependencies and scripts
-└── vite.config.js       # Vite build configuration with Tailwind plugin
+To preview the production build locally:
+```bash
+npm run preview
 ```
 
 ---
 
-## 📜 Available Scripts
+## License & Attribution
 
-- `npm run dev` — Starts the local Vite development server
-- `npm run build` — Compiles the app for production in the `dist` folder
-- `npm run lint` — Runs `oxlint` to check for linting issues
-- `npm run preview` — Locally preview the production build
-
----
-
-## 🤝 Attribution
-
-All photos are generously provided by photographers through the [Pexels API](https://www.pexels.com/api/) under the [Pexels License](https://www.pexels.com/license/) (free for personal and commercial use).
+Photos provided courtesy of creators on [Pexels](https://www.pexels.com/) under the [Pexels License](https://www.pexels.com/license/). This project was created for educational and practice purposes.
