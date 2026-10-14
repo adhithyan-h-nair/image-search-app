@@ -30,8 +30,6 @@ A clean, responsive image search application built with React and Tailwind CSS, 
 
 ## Screenshots
 
-> *Add screenshots of the app below or place images in the `screenshots/` directory.*
-
 ### Home Page
 ![Home Page](screenshots/home.png)
 
